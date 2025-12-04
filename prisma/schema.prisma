@@ -1,0 +1,31 @@
+ 
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+
+model User{
+  id String @id @default(cuid())
+  name String
+  email String @unique
+  password String?
+  image String?
+  history History[]
+}
+model History {
+  id String @id @default(cuid())
+  legacy_language String
+  legacy_code String
+  modern_language String
+  converted_code String
+  documentation String
+  author User @relation(fields: [authorId], references: [id])
+  authorId String  // Make it required again
+  createdAT DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}

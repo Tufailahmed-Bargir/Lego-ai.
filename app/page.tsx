@@ -1,14 +1,7 @@
-"use client"
-
-import { useEffect } from "react"
-import { useRouter } from "next/navigation"
-
-export default function Home() {
-  const router = useRouter()
-
-  useEffect(() => {
-    router.push("/landing")
-  }, [router])
-
-  return null
+import LandingPage from "./landing/page";
+ 
+export default function page(){
+  return <>
+  <LandingPage/>
+  </>
 }
